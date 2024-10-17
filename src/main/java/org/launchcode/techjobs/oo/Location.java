@@ -8,22 +8,25 @@ public class Location {
     private static int nextId = 1;
     private String value;
 
+    // Default constructor: assigns a unique id
     public Location() {
         id = nextId;
         nextId++;
     }
 
-    // TODO: Add a constructor that takes a string as a parameter and assigns it to the 'value' field. The
-    //  constructor should also call the empty constructor in order to initialize the 'id' field.
-
-
-    // Custom toString, equals, and hashCode methods:
-
-    @Override
-    public String toString() {
-        return value;
+    // Parameterized constructor: assigns a unique id and sets the value
+    public Location(String value) {
+        this();  // Calls the default constructor to initialize id
+        this.value = value;
     }
 
+    // Custom toString method
+    @Override
+    public String toString() {
+        return (value != null) ? value : "Data not available";
+    }
+
+    // equals method: compares objects by id
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -32,13 +35,13 @@ public class Location {
         return getId() == location.getId();
     }
 
+    // hashCode method: uses id for hash calculation
     @Override
     public int hashCode() {
         return Objects.hash(getId());
     }
 
     // Getters and Setters:
-
     public int getId() {
         return id;
     }
@@ -50,5 +53,4 @@ public class Location {
     public void setValue(String value) {
         this.value = value;
     }
-
 }
